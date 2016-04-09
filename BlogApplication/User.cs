@@ -11,11 +11,15 @@ namespace BlogApplication
     /// </summary>
     public class User
     {
+        #region Variables
+        private static int lastIDNumber = 0;
+        #endregion
+
         #region Properties
         /// <summary>
         /// User id
         /// </summary>
-        public int ID { get; set; }
+        public int UserID { get; private set; }
         /// <summary>
         /// User name
         /// </summary>
@@ -28,6 +32,13 @@ namespace BlogApplication
         /// User password
         /// </summary>
         public string Password { get; set; }
+        #endregion
+
+        #region Constructor
+        private User()
+        {
+            UserID = ++lastIDNumber;
+        }
         #endregion
 
         #region Methods

@@ -8,8 +8,8 @@ namespace BlogApplication
 {
     public enum PrivatePost
     {
-        Public = 0,
-        Private = 1
+        Public,
+        Private
     }
     /// <summary>
     /// User posts.
@@ -47,7 +47,7 @@ namespace BlogApplication
         /// </summary>
         public string GetPost()
         {
-            if(TypeOfPost == 0)
+            if(TypeOfPost == PrivatePost.Public)
             {
                 return Content;
             } else
