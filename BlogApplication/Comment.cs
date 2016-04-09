@@ -11,27 +11,48 @@ namespace BlogApplication
     /// </summary>
     public class Comment
     {
+        #region Variables
+        private static int lastIDNumber = 0;
+        #endregion
+
         #region Properties
         /// <summary>
         /// Comment id.
         /// </summary>
-        public int ID { get; set; }
+        public int CommentID { get; private set; }
         /// <summary>
         /// Comment user id.
         /// </summary>
-        public int UserId { get; set; }
+        public int UserID { get; private set; }
         /// <summary>
         /// Comment post id.
         /// </summary>
-        public int PostId { get; set; }
+        public int PostID { get; private set; }
         /// <summary>
         /// Comment content.
         /// </summary>
-        public string Content { get; set; }
+        public string Content { get; private set; }
         /// <summary>
         /// Comment created at time.
         /// </summary>
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; private set; }
+        #endregion
+
+        #region Constructor
+        private Comment()
+        {
+            CommentID = ++lastIDNumber;
+        }
+        #endregion
+
+        #region Methods
+        public void CreateComment(string comment, int post, int user)
+        {
+            Content = comment;
+            PostID = post;
+            UserID = user;
+            CreatedAt = new DateTime();
+        }
         #endregion
     }
 }
