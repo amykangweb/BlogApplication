@@ -16,11 +16,15 @@ namespace BlogApplication
     /// </summary>
     public class Post
     {
+        #region Variables
+        public static int lastIDNumber = 0;
+        #endregion
+
         #region Properties
         /// <summary>
         /// Post id.
         /// </summary>
-        public int ID { get; set; }
+        public int PostID { get; private set; }
         /// <summary>
         /// Post user id.
         /// </summary>
@@ -39,6 +43,13 @@ namespace BlogApplication
         public DateTime CreatedAt { get; set; }
         public PrivatePost TypeOfPost { get; set; }
 
+        #endregion
+
+        #region Constructor
+        public Post()
+        {
+            PostID = ++lastIDNumber;
+        }
         #endregion
 
         #region Methods
