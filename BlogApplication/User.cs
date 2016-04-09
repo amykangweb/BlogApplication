@@ -35,7 +35,7 @@ namespace BlogApplication
         #endregion
 
         #region Constructor
-        private User()
+        public User()
         {
             UserID = ++lastIDNumber;
         }

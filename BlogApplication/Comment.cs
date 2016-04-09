@@ -39,7 +39,7 @@ namespace BlogApplication
         #endregion
 
         #region Constructor
-        private Comment()
+        public Comment()
         {
             CommentID = ++lastIDNumber;
         }
@@ -51,7 +51,7 @@ namespace BlogApplication
             Content = comment;
             PostID = post;
             UserID = user;
-            CreatedAt = new DateTime();
+            CreatedAt = DateTime.Now;
         }
         #endregion
     }
