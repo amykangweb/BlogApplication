@@ -23,30 +23,21 @@ namespace BlogApplication
         /// <summary>
         /// Comment post id.
         /// </summary>
-        public int PostID { get; private set; }
+        public int PostID { get; set; }
         /// <summary>
         /// Comment content.
         /// </summary>
-        public string Content { get; private set; }
+        public string Content { get; set; }
         /// <summary>
         /// Comment created at time.
         /// </summary>
-        public DateTime CreatedAt { get; private set; }
+        public DateTime CreatedAt { get; set; }
         #endregion
 
         #region Constructor
         public Comment()
         {
             ID = ++lastIDNumber;
-        }
-        #endregion
-
-        #region Methods
-        public void CreateComment(string comment, int post)
-        {
-            Content = comment;
-            PostID = post;
-            CreatedAt = DateTime.Now;
         }
         #endregion
     }
