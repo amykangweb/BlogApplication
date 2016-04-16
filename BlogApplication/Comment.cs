@@ -19,11 +19,7 @@ namespace BlogApplication
         /// <summary>
         /// Comment id.
         /// </summary>
-        public int CommentID { get; private set; }
-        /// <summary>
-        /// Comment user id.
-        /// </summary>
-        public int UserID { get; private set; }
+        public int ID { get; private set; }
         /// <summary>
         /// Comment post id.
         /// </summary>
@@ -41,16 +37,15 @@ namespace BlogApplication
         #region Constructor
         public Comment()
         {
-            CommentID = ++lastIDNumber;
+            ID = ++lastIDNumber;
         }
         #endregion
 
         #region Methods
-        public void CreateComment(string comment, int post, int user)
+        public void CreateComment(string comment, int post)
         {
             Content = comment;
             PostID = post;
-            UserID = user;
             CreatedAt = DateTime.Now;
         }
         #endregion

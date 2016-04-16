@@ -24,11 +24,7 @@ namespace BlogApplication
         /// <summary>
         /// Post id.
         /// </summary>
-        public int PostID { get; private set; }
-        /// <summary>
-        /// Post user id.
-        /// </summary>
-        public int UserId { get; set; }
+        public int ID { get; private set; }
         /// <summary>
         /// Post title.
         /// </summary>
@@ -48,7 +44,7 @@ namespace BlogApplication
         #region Constructor
         public Post()
         {
-            PostID = ++lastIDNumber;
+            ID = ++lastIDNumber;
         }
         #endregion
 

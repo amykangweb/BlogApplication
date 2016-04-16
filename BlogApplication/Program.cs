@@ -10,35 +10,28 @@ namespace BlogApplication
     {
         static void Main(string[] args)
         {
-            var user = new User();
-            user.Email = "amy@mail.com";
-            user.Name = "Amy";
-            user.Password = "password";
 
             var post = new Post();
-            post.UserId = user.UserID;
             post.Title = "Hello, World!";
             post.Content = "Lorem ipsum is commonly used as placeholder text.";
             post.TypeOfPost = PrivatePost.Private;
             post.CreatedAt = DateTime.Now;
 
             var post2 = new Post();
-            post2.UserId = user.UserID;
             post2.Title = "Second Post!";
             post2.Content = "Lorem ipsum is commonly used as placeholder text.";
             post2.TypeOfPost = PrivatePost.Public;
             post2.CreatedAt = DateTime.Now;
 
             var comment = new Comment();
-            comment.CreateComment("This is a comment.", post2.PostID, user.UserID);
+            comment.CreateComment("This is a comment.", post2.PostID);
 
-            Console.WriteLine("Username: {0}, Title: {1}, Content: {2}, Created At: {3}", 
-                user.Name, post.Title, post.GetPost(), post.CreatedAt);
+            Console.WriteLine("Title: {1}, Content: {2}, Created At: {3}", post.Title, post.GetPost(), post.CreatedAt);
 
-            Console.WriteLine("Username: {0}, Title: {1}, Content: {2}, Created At: {3}",
-                user.Name, post2.Title, post2.GetPost(), post2.CreatedAt);
+            Console.WriteLine("Title: {1}, Content: {2}, Created At: {3}",
+                post2.Title, post2.GetPost(), post2.CreatedAt);
 
-            Console.WriteLine("Comment: {0}, User: {1}, Post: {2}, Created At: {3}", comment.Content, comment.UserID, comment.PostID, comment.CreatedAt);
+            Console.WriteLine("Comment: {0}, Post: {2}, Created At: {3}", comment.Content, comment.PostID, comment.CreatedAt);
 
             Console.Read();
         }
