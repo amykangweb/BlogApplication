@@ -38,10 +38,11 @@ namespace BlogApplication
                     Console.WriteLine("Enter post status. Private or Public.");
                     var status = Console.ReadLine();
                     var post = Blog.CreatePost(title, content, status);
-                    Console.WriteLine(post.GetPost());
+                    Post.PrintAll();
                     break;
 
                 case "3":
+                    Post.PrintAll();
                     Console.WriteLine("Enter post id.");
                     var id = Console.ReadLine();
                     Console.WriteLine("Enter comment content.");
@@ -49,6 +50,10 @@ namespace BlogApplication
                     Blog.CreateComment(text, int.Parse(id));
                     Post.PrintAll();
                     break;
+
+                case "0":
+                    Console.WriteLine("Exiting application.");
+                    return;
 
                 default:
                     Console.WriteLine("That is an invalid command!");

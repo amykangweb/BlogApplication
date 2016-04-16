@@ -79,8 +79,11 @@ namespace BlogApplication
                     var comments = Blog.AllComments.Where<Comment>(f => f.PostID == post.ID);
                     foreach(var comment in comments)
                     {
-                        Console.WriteLine(comment);
+                        Console.WriteLine("Post Comments:");
+                        Console.WriteLine(comment.Content);
                     }
+
+                    Console.WriteLine(" ");
                 }
                 else
                 {
