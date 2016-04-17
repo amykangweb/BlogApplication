@@ -10,57 +10,92 @@ namespace BlogApplication
     {
         static void Main(string[] args)
         {
-            Blog.CreatePost("Hello World!", "Hello, World! This is a blog post!", "public");
-            Blog.CreatePost("Second Post", "This is another blog post.", "public");
-            Blog.CreatePost("Lorem Ipsum", "Lorem ipsum is placeholder text commonly used during design and development phase of a website.", "public");
-
             Console.WriteLine("Welcome to Blog Application!");
-            Console.WriteLine("Please choose one of the options.");
-            Console.WriteLine("1. View all posts.");
-            Console.WriteLine("2. Create a new post.");
-            Console.WriteLine("3. Create a comment.");
-            Console.WriteLine("0. Exit program.");
+            string answer;
 
-            var answer = Console.ReadLine();
-
-            switch(answer)
+            do
             {
-                case "1":
-                    Console.WriteLine("Printing out all posts.");
-                    Post.PrintAll();
-                    break;
+                Console.WriteLine("Please choose one of the options.");
+                Console.WriteLine("1. View all posts.");
+                Console.WriteLine("2. Create a new post.");
+                Console.WriteLine("3. Create a comment.");
+                Console.WriteLine("0. Exit program.");
 
-                case "2":
-                    Console.WriteLine("Enter post title.");
-                    var title = Console.ReadLine();
-                    Console.WriteLine("Enter post content.");
-                    var content = Console.ReadLine();
-                    Console.WriteLine("Enter post status. Private or Public.");
-                    var status = Console.ReadLine();
-                    var post = Blog.CreatePost(title, content, status);
-                    Post.PrintAll();
-                    break;
+                answer = Console.ReadLine();
 
-                case "3":
-                    Post.PrintAll();
-                    Console.WriteLine("Enter post id.");
-                    var id = Console.ReadLine();
-                    Console.WriteLine("Enter comment content.");
-                    var text = Console.ReadLine();
-                    Blog.CreateComment(text, int.Parse(id));
-                    Post.PrintAll();
-                    break;
+                switch (answer)
+                {
+                    case "1":
+                        Console.WriteLine("Printing out all posts.");
+                        PrintAllPosts();
+                        break;
 
-                case "0":
-                    Console.WriteLine("Exiting application.");
-                    return;
+                    case "2":
+                        Console.WriteLine("Enter post title.");
+                        var title = Console.ReadLine();
+                        Console.WriteLine("Enter post content.");
+                        var content = Console.ReadLine();
+                        Console.WriteLine("Enter post status. Private or Public.");
+                        var status = Console.ReadLine();
+                        var post = Blog.CreatePost(title, content, status);
+                        PrintAllPosts();
+                        break;
 
-                default:
-                    Console.WriteLine("That is an invalid command!");
-                    break;
-            }
+                    case "3":
+                        if (Blog.AllPosts.Count == 0)
+                        {
+                            Console.WriteLine("No posts exist to comment on.");
+                            break;
+                        }
+                        PrintAllPosts();
+                        Console.WriteLine("Enter post id.");
+                        var id = Console.ReadLine();
+                        Console.WriteLine("Enter comment content.");
+                        var text = Console.ReadLine();
+                        Blog.CreateComment(text, int.Parse(id));
+                        PrintAllPosts();
+                        break;
 
+                    case "0":
+                        Console.WriteLine("Exiting application.");
+                        return;
+
+                    default:
+                        Console.WriteLine("That is an invalid command!");
+                        break;
+                }
+            } while (answer != "0");
             Console.Read();
+        }
+        /// <summary>
+        /// Return all blog posts. Only show public posts.
+        /// </summary>
+        public static void PrintAllPosts()
+        {
+            foreach (var post in Blog.AllPosts)
+            {
+                if (post.TypeOfPost == PrivatePost.Public)
+                {
+                    Console.WriteLine("Id: {0}", post.ID);
+                    Console.WriteLine("Title: {0}", post.Title);
+                    Console.WriteLine("Content: {0}", post.GetPost());
+                    Console.WriteLine("Post Comments:");
+
+                    // Find and show all comments with PostID of post.ID
+                    var comments = Blog.AllComments.Where<Comment>(f => f.PostID == post.ID);
+                    foreach (var comment in comments)
+                    {
+                        Console.WriteLine(comment.Content);
+                    }
+
+                    Console.WriteLine(" ");
+                }
+                else
+                {
+                    Console.WriteLine("Error. This post is private.");
+                }
+
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ namespace BlogApplication
         /// <summary>
         ///  Temporarily store posts and comments with lists.
         /// </summary>
-        #region Lists
+        #region Variables
         public static List<Post> AllPosts = new List<Post>();
         public static List<Comment> AllComments = new List<Comment>();
         #endregion

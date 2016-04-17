@@ -62,36 +62,6 @@ namespace BlogApplication
                 return "Error. This post is private.";
             }
         }
-        /// <summary>
-        /// Return all blog posts. Only show public posts.
-        /// </summary>
-        public static void PrintAll()
-        {
-            foreach(var post in Blog.AllPosts)
-            {
-                if (post.TypeOfPost == PrivatePost.Public)
-                {
-                    Console.WriteLine("Id: {0}", post.ID);
-                    Console.WriteLine("Title: {0}", post.Title);
-                    Console.WriteLine("Content: {0}", post.GetPost());
-
-                    // Find and show all comments with PostID of post.ID
-                    var comments = Blog.AllComments.Where<Comment>(f => f.PostID == post.ID);
-                    foreach(var comment in comments)
-                    {
-                        Console.WriteLine("Post Comments:");
-                        Console.WriteLine(comment.Content);
-                    }
-
-                    Console.WriteLine(" ");
-                }
-                else
-                {
-                    Console.WriteLine("Error. This post is private.");
-                }
-
-            }
-        }
         #endregion
     }
 }
