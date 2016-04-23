@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,14 +25,17 @@ namespace BlogApplication
         /// <summary>
         /// Post id.
         /// </summary>
+        [Key]
         public int ID { get; private set; }
         /// <summary>
         /// Post title.
         /// </summary>
+        [StringLength(255, ErrorMessage = "Post title cannot be more than 255 characters long.")]
         public string Title { get; set; }
         /// <summary>
         /// Post content.
         /// </summary>
+        [StringLength(255, ErrorMessage = "Post content cannot be more than 255 characters long.")]
         public string Content { private get; set; }
         /// <summary>
         /// Post created at time.

@@ -9,13 +9,26 @@ namespace BlogApplication
     public static class Blog
     {
         /// <summary>
-        ///  Temporarily store posts and comments with lists.
+        ///  Create db for BlogApplication.
         /// </summary>
         #region Variables
-        public static List<Post> AllPosts = new List<Post>();
-        public static List<Comment> AllComments = new List<Comment>();
+        public static BlogModel db = new BlogModel();
         #endregion
 
+        /// <summary>
+        /// Checks if any Posts exist.
+        /// </summary>
+        /// <returns>True or False</returns>
+        public static Boolean PostsExist() {
+            if(db.Posts.Count<Post>() != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         /// <summary>
         /// Create Post Method
         /// </summary>
@@ -41,7 +54,8 @@ namespace BlogApplication
                 CreatedAt = DateTime.Now
             };
 
-            AllPosts.Add(post);
+            db.Posts.Add(post);
+            db.SaveChanges();
             return post;
 
         }
@@ -61,7 +75,8 @@ namespace BlogApplication
                 CreatedAt = DateTime.Now
             };
 
-            AllComments.Add(comment);
+            db.Comments.Add(comment);
+            db.SaveChanges();
             return comment;
 
         }

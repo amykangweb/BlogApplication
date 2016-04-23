@@ -42,7 +42,7 @@ namespace BlogApplication
                         break;
 
                     case "3":
-                        if (Blog.AllPosts.Count == 0)
+                        if (!Blog.PostsExist())
                         {
                             Console.WriteLine("No posts exist to comment on.");
                             break;
@@ -72,7 +72,7 @@ namespace BlogApplication
         /// </summary>
         public static void PrintAllPosts()
         {
-            foreach (var post in Blog.AllPosts)
+            foreach (var post in Blog.db.Posts)
             {
                 if (post.TypeOfPost == PrivatePost.Public)
                 {
@@ -82,7 +82,7 @@ namespace BlogApplication
                     Console.WriteLine("Post Comments:");
 
                     // Find and show all comments with PostID of post.ID
-                    var comments = Blog.AllComments.Where<Comment>(f => f.PostID == post.ID);
+                    var comments = Blog.db.Comments.Where(f => f.PostID == post.ID);
                     foreach (var comment in comments)
                     {
                         Console.WriteLine(comment.Content);
