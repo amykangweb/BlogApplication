@@ -21,11 +21,7 @@ namespace BlogApplication
         /// Comment id.
         /// </summary>
         [Key]
-        public int ID { get; private set; }
-        /// <summary>
-        /// Comment post id.
-        /// </summary>
-        public int PostID { get; set; }
+        public int Id { get; private set; }
         /// <summary>
         /// Comment content.
         /// </summary>
@@ -35,12 +31,14 @@ namespace BlogApplication
         /// Comment created at time.
         /// </summary>
         public DateTime CreatedAt { get; set; }
+        // Comment belongs to post.
+        public virtual Post Post { get; set; }
         #endregion
 
         #region Constructor
         public Comment()
         {
-            ID = ++lastIDNumber;
+            Id = ++lastIDNumber;
         }
         #endregion
     }

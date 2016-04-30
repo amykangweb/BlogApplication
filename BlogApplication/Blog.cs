@@ -68,10 +68,11 @@ namespace BlogApplication
         /// <returns></returns>
         public static Comment CreateComment(string content, int postid)
         {
+            var post = db.Posts.Where(c => c.Id == postid).FirstOrDefault();
             var comment = new Comment
             {
                 Content = content,
-                PostID = postid,
+                Post = post,
                 CreatedAt = DateTime.Now
             };
 

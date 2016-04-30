@@ -76,14 +76,18 @@ namespace BlogApplication
             {
                 if (post.TypeOfPost == PrivatePost.Public)
                 {
-                    Console.WriteLine("Id: {0}", post.ID);
+                    Console.WriteLine("Id: {0}", post.Id);
                     Console.WriteLine("Title: {0}", post.Title);
                     Console.WriteLine("Content: {0}", post.GetPost());
                     Console.WriteLine("Post Comments:");
 
-                    // Find and show all comments with PostID of post.ID
-                    var comments = Blog.db.Comments.Where(f => f.PostID == post.ID);
-                    foreach (var comment in comments)
+                    // Find and show all comments for post if comments exist.
+                    if(post.Comments == null)
+                    {
+                        return;
+                    }
+
+                    foreach (var comment in post.Comments)
                     {
                         Console.WriteLine(comment.Content);
                     }

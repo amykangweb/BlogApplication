@@ -26,7 +26,7 @@ namespace BlogApplication
         /// Post id.
         /// </summary>
         [Key]
-        public int ID { get; private set; }
+        public int Id { get; private set; }
         /// <summary>
         /// Post title.
         /// </summary>
@@ -42,13 +42,14 @@ namespace BlogApplication
         /// </summary>
         public DateTime CreatedAt { get; set; }
         public PrivatePost TypeOfPost { get; set; }
-
+        // Post has many comments.
+        public virtual ICollection<Comment> Comments { get; set; }
         #endregion
 
         #region Constructor
         public Post()
         {
-            ID = ++lastIDNumber;
+            Id = ++lastIDNumber;
         }
         #endregion
 
