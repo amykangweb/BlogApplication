@@ -37,8 +37,19 @@ namespace BlogApplication
                         var content = Console.ReadLine();
                         Console.WriteLine("Enter post status. Private or Public.");
                         var status = Console.ReadLine();
-                        var post = Blog.CreatePost(title, content, status);
-                        PrintAllPosts();
+                        Blog.CreatePost(title, content, status);
+                        try
+                        {
+                            PrintAllPosts();
+                        }
+                        catch (ArgumentNullException e)
+                        {
+                            Console.WriteLine(e.ParamName);
+                        }
+                        catch(Exception e)
+                        {
+                            Console.WriteLine("Oops! There was an error. - {}", e.Message);
+                        }
                         break;
 
                     case "3":
@@ -84,7 +95,7 @@ namespace BlogApplication
                     // Find and show all comments for post if comments exist.
                     if(post.Comments == null)
                     {
-                        return;
+                        throw new ArgumentNullException("Post comments are empty.");
                     }
 
                     foreach (var comment in post.Comments)

@@ -35,8 +35,7 @@ namespace BlogApplication
         /// <summary>
         /// Post content.
         /// </summary>
-        [StringLength(255, ErrorMessage = "Post content cannot be more than 255 characters long.")]
-        public string Content { private get; set; }
+        public string Content { get; set; }
         /// <summary>
         /// Post created at time.
         /// </summary>
