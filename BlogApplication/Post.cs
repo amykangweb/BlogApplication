@@ -18,7 +18,7 @@ namespace BlogApplication
     public class Post
     {
         #region Variables
-        public static int lastIDNumber = 0;
+        public static BlogModel db = new BlogModel();
         #endregion
 
         #region Properties
@@ -45,13 +45,6 @@ namespace BlogApplication
         public virtual ICollection<Comment> Comments { get; set; }
         #endregion
 
-        #region Constructor
-        public Post()
-        {
-            Id = ++lastIDNumber;
-        }
-        #endregion
-
         #region Methods
         /// <summary>
         /// Post methods.
@@ -65,6 +58,11 @@ namespace BlogApplication
             {
                 return "Error. This post is private.";
             }
+        }
+
+        public static Post[] GetAllPosts()
+        {
+            return db.Posts.ToArray();
         }
         #endregion
     }
