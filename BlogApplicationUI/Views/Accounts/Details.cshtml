@@ -1,0 +1,13 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<BlogApplication.Post>
+
+@{
+    ViewBag.Title = "Blog";
+}
+
+<h2>@User.Identity.GetUserName()</h2>
+
+@foreach (var post in Model)
+{
+    <p>@post.Title</p>
+}

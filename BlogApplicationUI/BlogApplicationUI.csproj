@@ -200,6 +200,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
@@ -281,6 +282,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Posts\Create.cshtml" />
+    <Content Include="Views\Accounts\Create.cshtml" />
+    <Content Include="Views\Accounts\Delete.cshtml" />
+    <Content Include="Views\Accounts\Details.cshtml" />
+    <Content Include="Views\Accounts\Edit.cshtml" />
+    <Content Include="Views\Accounts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
