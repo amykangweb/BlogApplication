@@ -41,6 +41,8 @@ namespace BlogApplication
         /// </summary>
         public DateTime CreatedAt { get; set; }
         public PrivatePost TypeOfPost { get; set; }
+        // Author email.
+        public string AccountEmail { get; set; }
         // Post has many comments.
         public virtual ICollection<Comment> Comments { get; set; }
         #endregion

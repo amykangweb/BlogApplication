@@ -35,7 +35,7 @@ namespace BlogApplication
         /// <param name="content">Post content.</param>
         /// <param name="status">Status of Post. Private/Public</param>
         /// <returns></returns>
-        public static Post CreatePost(string title, string content, string status)
+        public static Post CreatePost(string title, string content, string status, string email)
         {
             PrivatePost poststatus;
 
@@ -51,7 +51,8 @@ namespace BlogApplication
                 Title = title,
                 Content = content,
                 TypeOfPost = poststatus,
-                CreatedAt = DateTime.Now
+                CreatedAt = DateTime.Now,
+                AccountEmail = email
             };
 
             db.Posts.Add(post);

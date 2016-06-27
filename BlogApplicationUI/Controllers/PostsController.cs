@@ -15,5 +15,29 @@ namespace BlogApplicationUI.Controllers
             var posts = Post.GetAllPosts();
             return View(posts);
         }
+
+        // Create View
+        [Authorize]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // Create Action
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include="Title,Content,TypeOfPost")] Post post)
+        {
+            if(ModelState.IsValid)
+            {
+                var account = HttpContext.User.Identity.Name;
+                Blog.CreatePost(post.Title, post.Content, post.TypeOfPost.ToString(), account);
+                return RedirectToAction("Index");
+            }
+
+            return View("Index");
+        }
     }
+
 }

@@ -37,7 +37,7 @@ namespace BlogApplication
                         var content = Console.ReadLine();
                         Console.WriteLine("Enter post status. Private or Public.");
                         var status = Console.ReadLine();
-                        Blog.CreatePost(title, content, status);
+                        Blog.CreatePost(title, content, status, "amy@mail.com");
                         try
                         {
                             PrintAllPosts();
