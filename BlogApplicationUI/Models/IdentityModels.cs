@@ -31,7 +31,6 @@ namespace BlogApplicationUI.Models
         }
 
         public System.Data.Entity.DbSet<BlogApplication.Post> Posts { get; set; }
-
-        public override System.Data.Entity.IDbSet<ApplicationUser> Users { get; set; }
+        public DbSet<BlogApplication.Author> Authors { get; set; }
     }
 }

@@ -45,6 +45,7 @@ namespace BlogApplication
         public string AccountEmail { get; set; }
         // Post has many comments.
         public virtual ICollection<Comment> Comments { get; set; }
+        public virtual Author Author { get; set; }
         #endregion
 
         #region Methods

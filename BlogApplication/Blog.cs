@@ -29,6 +29,20 @@ namespace BlogApplication
                 return false;
             }
         }
+
+        public static Author CreateAuthor(string name, string email, string blog)
+        {
+            var author = new Author
+            {
+                AuthorName = name,
+                Email = email,
+                BlogName = blog
+            };
+
+            db.Authors.Add(author);
+            db.SaveChanges();
+            return author;
+        }
         /// <summary>
         /// Create Post Method
         /// </summary>
