@@ -9,6 +9,11 @@ namespace BlogApplication
 {
     public class Author
     {
+        #region Variables
+        public static BlogModel db = new BlogModel();
+        #endregion
+
+        [Key]
         public int Id { get; set; }
         public string AuthorName { get; set; }
         public string Email { get; set; }

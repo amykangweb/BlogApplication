@@ -35,6 +35,7 @@ namespace BlogApplication
         /// <summary>
         /// Post content.
         /// </summary>
+        [DataType(DataType.MultilineText)]
         public string Content { get; set; }
         /// <summary>
         /// Post created at time.

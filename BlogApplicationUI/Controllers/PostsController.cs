@@ -33,7 +33,7 @@ namespace BlogApplicationUI.Controllers
             {
                 var account = HttpContext.User.Identity.Name;
                 Blog.CreatePost(post.Title, post.Content, post.TypeOfPost.ToString(), account);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Blog");
             }
 
             return View("Index");

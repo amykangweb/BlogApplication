@@ -6,10 +6,10 @@
 }
 
 <p>Welcome, <strong>@User.Identity.GetUserName()</strong></p>
-<h3>Your Blog</h3>
+<h3>@ViewData["BlogName"]</h3>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("New Post", "Create", "Posts")
 </p>
 <table class="table">
     <tr>

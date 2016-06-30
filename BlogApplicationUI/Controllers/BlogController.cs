@@ -27,6 +27,7 @@ namespace BlogApplicationUI.Controllers
             }
             
             var posts = db.Posts.Where(a => a.AccountEmail == account);
+            @ViewData["BlogName"] = user.BlogName;
             return View(posts);
         }
 
@@ -34,6 +35,15 @@ namespace BlogApplicationUI.Controllers
         [Authorize]
         public ActionResult Create()
         {
+            // Check if current user already has author record.
+            var account = HttpContext.User.Identity.Name;
+            var blogAuthor = db.Authors.Where(a => a.Email == account).FirstOrDefault();
+            // Redirect to blog index page if current user already has author record.
+            if(blogAuthor != null)
+            {
+                return RedirectToAction("Index");
+            }
+
             return View();
         }
 
@@ -43,9 +53,13 @@ namespace BlogApplicationUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="UserName,BlogName")] Author author)
         {
-            if (ModelState.IsValid)
+            // Check if current user already has author record.
+            var account = HttpContext.User.Identity.Name;
+            var blogAuthor = db.Authors.Where(a => a.Email == account).FirstOrDefault();
+
+            // Only allow creation of author record if user does not have author record.
+            if (ModelState.IsValid && (blogAuthor == null))
             {
-                var account = HttpContext.User.Identity.Name;
                 Blog.CreateAuthor(author.AuthorName, account.ToString(), author.BlogName);
                 return RedirectToAction("Index");
             }
