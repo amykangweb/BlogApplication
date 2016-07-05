@@ -67,9 +67,13 @@ namespace BlogApplicationUI.Controllers
         }
 
         // GET: Individual Blog for non-signed in users.
-        // public ActionResult Detail()
-        //{
-
-        //}
+        public ActionResult Detail(string blog)
+        {
+            var author = db.Authors.Where(a => a.BlogName == blog).FirstOrDefault();
+            var posts = db.Posts.Where(a => a.AccountEmail == author.Email);
+            @ViewData["BlogName"] = author.BlogName;
+            @ViewData["AuthorName"] = author.AuthorName;
+            return View(posts);
+        }
     }
 }

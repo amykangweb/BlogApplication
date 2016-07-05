@@ -3,16 +3,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 using System.Web.Mvc;
 
 namespace BlogApplicationUI.Controllers
 {
     public class PostsController : Controller
     {
+        private BlogModel db = new BlogModel();
+
         // GET: Posts
         public ActionResult Index()
         {
-            var posts = Post.GetAllPosts();
+            var posts = db.Posts.Where(c => c.TypeOfPost == PrivatePost.Public).Include(a => a.Author).ToList();
+
             return View(posts);
         }
 

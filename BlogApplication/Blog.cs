@@ -51,6 +51,8 @@ namespace BlogApplication
         /// <returns></returns>
         public static Post CreatePost(string title, string content, string status, string email)
         {
+            var author = db.Authors.Where(a => a.Email == email).FirstOrDefault();
+
             PrivatePost poststatus;
 
             if (status.ToLower() == "private")
@@ -66,9 +68,9 @@ namespace BlogApplication
                 Content = content,
                 TypeOfPost = poststatus,
                 CreatedAt = DateTime.Now,
-                AccountEmail = email
+                AccountEmail = email,
+                Author = author
             };
-
             db.Posts.Add(post);
             db.SaveChanges();
             return post;
