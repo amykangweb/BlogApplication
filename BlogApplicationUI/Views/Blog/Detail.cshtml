@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<BlogApplication.Post>
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Detail";
@@ -12,8 +13,13 @@
     <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
     <p>@Html.DisplayFor(modelItem => item.CreatedAt)</p>
     <p>@Html.DisplayFor(modelItem => item.Content)</p>
-    <p>
-       Edit
-    </p>
+
+    <!-- Only show edit and delete links for post to logged in blog author. -->
+    if (Request.IsAuthenticated && (HttpContext.Current.User.Identity.Name == @ViewData["AuthorEmail"].ToString()))
+    {
+        <p>Edit</p>
+        <p>Delete</p>
+
+    }
 }
 
