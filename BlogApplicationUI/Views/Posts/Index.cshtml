@@ -18,7 +18,7 @@
                 @item.Title
             </td>
             <td>
-                @item.Author.BlogName
+                @Html.ActionLink(item.Author.BlogName, "Detail", "Blog", new { blog = item.Author.BlogName }, null)
             </td>
             <td>
                 @item.Content

@@ -21,6 +21,7 @@ namespace BlogApplicationUI.Controllers
         {
             var account = HttpContext.User.Identity.Name;
             var user = db.Authors.Where(a => a.Email == account).FirstOrDefault();
+            // Redirect to Create action if user does not have an author record.
             if (user == null)
             {
                 return RedirectToAction("Create");

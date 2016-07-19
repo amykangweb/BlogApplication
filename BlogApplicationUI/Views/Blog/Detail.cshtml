@@ -4,7 +4,8 @@
     ViewBag.Title = "Detail";
 }
 
-<h2>Detail</h2>
+<h2>@ViewData["BlogName"]</h2>
+<strong>@ViewData["AuthorName"]</strong>
 
 @foreach (var item in Model)
 {
