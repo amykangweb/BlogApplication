@@ -51,6 +51,7 @@ namespace BlogApplicationUI.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
             Post post = db.Posts.Find(id);
+            Comment comment = new Comment();
 
             if(post == null)
             {
@@ -58,7 +59,7 @@ namespace BlogApplicationUI.Controllers
             }
             Session.Add("BlogName", post.Author.BlogName);
             Session.Add("PostId", post.Id);
-            return View(post);
+            return View(Tuple.Create(post, comment));
         }
     }
 

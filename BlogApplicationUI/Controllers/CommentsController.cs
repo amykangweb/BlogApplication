@@ -20,7 +20,7 @@ namespace BlogApplicationUI.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Content")] Comment comment)
+        public ActionResult Create(string Content)
         {
             string blogName = Session["BlogName"].ToString();
             int postId = Convert.ToInt32(Session["PostId"]);
@@ -28,8 +28,8 @@ namespace BlogApplicationUI.Controllers
             if(ModelState.IsValid)
             {
                 var account = HttpContext.User.Identity.Name;
-                Blog.CreateComment(comment.Content, postId);
-                return RedirectToAction("Detail", "Blog", new { blog = blogName });
+                Blog.CreateComment(Content, postId);
+                return RedirectToAction("Details", "Posts", new { id = postId });
             }
 
             return RedirectToAction("Detail", "Blog", new { blog = blogName });

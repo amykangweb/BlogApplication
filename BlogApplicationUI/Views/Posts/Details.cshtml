@@ -1,4 +1,4 @@
-﻿@model BlogApplication.Post
+﻿@model Tuple<BlogApplication.Post,BlogApplication.Comment>
 
 @{
     ViewBag.Title = "Details";
@@ -11,48 +11,83 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(Item1 => Model.Item1.Title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Title)
+            @Html.DisplayFor(Item1 => Model.Item1.Title)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Content)
+            @Html.DisplayNameFor(Item1 => Model.Item1.Content)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Content)
+            @Html.DisplayFor(Item1 => Model.Item1.Content)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
+            @Html.DisplayNameFor(Item1 => Model.Item1.CreatedAt)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
+            @Html.DisplayFor(Item1 => Model.Item1.CreatedAt)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TypeOfPost)
+            @Html.DisplayNameFor(Item1 => Model.Item1.TypeOfPost)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TypeOfPost)
+            @Html.DisplayFor(Item1 => Model.Item1.TypeOfPost)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AccountEmail)
+            @Html.DisplayNameFor(Item1 => Model.Item1.AccountEmail)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AccountEmail)
+            @Html.DisplayFor(Item1 => Model.Item1.AccountEmail)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Item1.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<!-- Comment Form -->
+
+<h2>Create Comment</h2>
+
+@using (Html.BeginForm("Create", "Comments"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(Item2 => Model.Item2.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("Content")
+                @Html.ValidationMessageFor(Item2 => Model.Item2.Content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
