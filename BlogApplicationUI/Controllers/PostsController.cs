@@ -42,6 +42,24 @@ namespace BlogApplicationUI.Controllers
 
             return View("Index");
         }
+
+        // GET: Get Post page.
+        public ActionResult Details(int? id)
+        {
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            Post post = db.Posts.Find(id);
+
+            if(post == null)
+            {
+                return HttpNotFound();
+            }
+            Session.Add("BlogName", post.Author.BlogName);
+            Session.Add("PostId", post.Id);
+            return View(post);
+        }
     }
 
 }
