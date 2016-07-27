@@ -67,7 +67,7 @@ namespace BlogApplicationUI.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Individual Blog for non-signed in users.
+        // GET: Individual Blog for all users.
         public ActionResult Detail(string blog)
         {
             if(blog == null)
@@ -76,6 +76,7 @@ namespace BlogApplicationUI.Controllers
             }
             var author = db.Authors.Where(a => a.BlogName == blog).FirstOrDefault();
             var posts = db.Posts.Where(a => a.AccountEmail == author.Email);
+
             @ViewData["BlogName"] = author.BlogName;
             @ViewData["AuthorName"] = author.AuthorName;
             @ViewData["AuthorEmail"] = author.Email;

@@ -12,9 +12,6 @@ namespace BlogApplication
     /// </summary>
     public class Comment
     {
-        #region Variables
-        private static int lastIDNumber = 0;
-        #endregion
 
         #region Properties
         /// <summary>
@@ -33,13 +30,6 @@ namespace BlogApplication
         public DateTime CreatedAt { get; set; }
         // Comment belongs to post.
         public virtual Post Post { get; set; }
-        #endregion
-
-        #region Constructor
-        public Comment()
-        {
-            Id = ++lastIDNumber;
-        }
         #endregion
     }
 }
