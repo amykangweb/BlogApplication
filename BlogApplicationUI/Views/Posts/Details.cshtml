@@ -1,4 +1,4 @@
-﻿@model Tuple<BlogApplication.Post,BlogApplication.Comment>
+﻿@model Tuple<BlogApplication.Post,BlogApplication.Comment,List<BlogApplication.Comment>>
 
 @{
     ViewBag.Title = "Details";
@@ -82,6 +82,18 @@
             </div>
         </div>
     </div>
+}
+
+@foreach (var item in Model.Item3)
+{
+    <p>
+        <strong>@Html.ActionLink(item.Author.AuthorName, "Detail", "Blog", new { blog = item.Author.BlogName }, null)</strong>
+        <br />
+        <em>@item.CreatedAt</em>
+        <blockquote>
+            @item.Content
+        </blockquote>
+    </p>
 }
 
 <div>

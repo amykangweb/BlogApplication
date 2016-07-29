@@ -52,6 +52,7 @@ namespace BlogApplicationUI.Controllers
             }
             Post post = db.Posts.Find(id);
             Comment comment = new Comment();
+            var comments = db.Comments.Where(c => c.AccountEmail == post.AccountEmail).Include(a => a.Author).ToList();
 
             if(post == null)
             {
@@ -59,7 +60,7 @@ namespace BlogApplicationUI.Controllers
             }
             Session.Add("BlogName", post.Author.BlogName);
             Session.Add("PostId", post.Id);
-            return View(Tuple.Create(post, comment));
+            return View(Tuple.Create(post, comment, comments));
         }
     }
 

@@ -52,7 +52,7 @@ namespace BlogApplicationUI.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="UserName,BlogName")] Author author)
+        public ActionResult Create([Bind(Include="AuthorName,BlogName")] Author author)
         {
             // Check if current user already has author record.
             var account = HttpContext.User.Identity.Name;

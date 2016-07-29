@@ -10,6 +10,8 @@ namespace BlogApplicationUI.Controllers
 {
     public class CommentsController : Controller
     {
+        private BlogModel db = new BlogModel();
+
         // GET: Comments
         public ActionResult Index()
         {
@@ -27,8 +29,8 @@ namespace BlogApplicationUI.Controllers
 
             if(ModelState.IsValid)
             {
-                var account = HttpContext.User.Identity.Name;
-                Blog.CreateComment(Content, postId);
+                var author = HttpContext.User.Identity.Name;
+                Blog.CreateComment(Content, postId, author);
                 return RedirectToAction("Details", "Posts", new { id = postId });
             }
 

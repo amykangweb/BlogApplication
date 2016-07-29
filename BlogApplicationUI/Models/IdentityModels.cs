@@ -30,7 +30,8 @@ namespace BlogApplicationUI.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<BlogApplication.Post> Posts { get; set; }
+        public DbSet<BlogApplication.Post> Posts { get; set; }
+        public DbSet<BlogApplication.Comment> Comments { get; set; }
         public DbSet<BlogApplication.Author> Authors { get; set; }
     }
 }

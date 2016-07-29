@@ -29,7 +29,9 @@ namespace BlogApplication
         /// </summary>
         public DateTime CreatedAt { get; set; }
         // Comment belongs to post.
+        public string AccountEmail { get; set; }
         public virtual Post Post { get; set; }
+        public virtual Author Author { get; set; }
         #endregion
     }
 }

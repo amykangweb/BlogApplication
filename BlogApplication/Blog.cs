@@ -83,13 +83,16 @@ namespace BlogApplication
         /// <param name="content">Comment Content</param>
         /// <param name="postid">Comment Post id</param>
         /// <returns></returns>
-        public static Comment CreateComment(string content, int postid)
+        public static Comment CreateComment(string content, int postid, string email)
         {
             var post = db.Posts.Where(c => c.Id == postid).FirstOrDefault();
+            var author = db.Authors.Where(c => c.Email == email).FirstOrDefault();
             var comment = new Comment
             {
                 Content = content,
                 Post = post,
+                Author = author,
+                AccountEmail = email,
                 CreatedAt = DateTime.Now
             };
 

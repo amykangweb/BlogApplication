@@ -62,7 +62,7 @@ namespace BlogApplication
                         var id = Console.ReadLine();
                         Console.WriteLine("Enter comment content.");
                         var text = Console.ReadLine();
-                        Blog.CreateComment(text, int.Parse(id));
+                        Blog.CreateComment(text, int.Parse(id), "amy@mail.com");
                         PrintAllPosts();
                         break;
 
