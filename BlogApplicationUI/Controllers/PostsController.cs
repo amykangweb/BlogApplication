@@ -24,6 +24,15 @@ namespace BlogApplicationUI.Controllers
         [Authorize]
         public ActionResult Create()
         {
+            var account = HttpContext.User.Identity.Name;
+            var authorProfile = db.Authors.Where(a => a.Email == account).FirstOrDefault();
+
+            // Don't allow users without author records to view create post page.
+            if(authorProfile == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 
