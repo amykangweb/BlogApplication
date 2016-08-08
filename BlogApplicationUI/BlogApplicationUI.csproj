@@ -294,7 +294,8 @@
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Blog\Create.cshtml" />
     <Content Include="Views\Blog\Detail.cshtml" />
-    <Content Include="Views\Posts\Details.cshtml" />
+    <Content Include="Views\Posts\Detail.cshtml" />
+    <Content Include="Views\Posts\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

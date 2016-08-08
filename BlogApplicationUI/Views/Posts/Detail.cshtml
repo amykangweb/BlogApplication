@@ -89,7 +89,7 @@ using (Html.BeginForm("Create", "Comments"))
     }
 } else
 {
-    <p>@Html.ActionLink("Sign Up", "Register", "Account") or @Html.ActionLink("Log In", "Login", "Account") to post comments.</p>
+    <p>@Html.ActionLink("Log In", "Login", "Account") or @Html.ActionLink("Sign Up", "Register", "Account") to post a comment.</p>
 }
 
 @foreach (var item in Model.Item3)

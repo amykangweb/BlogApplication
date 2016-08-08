@@ -53,7 +53,7 @@ namespace BlogApplicationUI.Controllers
         }
 
         // GET: Get Post page.
-        public ActionResult Details(int? id)
+        public ActionResult Detail(int? id)
         {
             if(id == null)
             {
@@ -70,6 +70,45 @@ namespace BlogApplicationUI.Controllers
             Session.Add("BlogName", post.Author.BlogName);
             Session.Add("PostId", post.Id);
             return View(Tuple.Create(post, comment, comments));
+        }
+
+        // GET: Edit post view.
+        public ActionResult Edit(int? id)
+        {
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+
+            var post = db.Posts.Where(f => f.Id == id).FirstOrDefault();
+
+            if(post == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(post);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        // POST: Update Post Action.
+        public ActionResult Edit([Bind(Include = "Id, Title, Content, TypeOfPost")]Post post)
+        {
+            var current = HttpContext.User.Identity.Name;
+            var original = db.Posts.Where(i => i.Id == post.Id).FirstOrDefault();
+
+            if(ModelState.IsValid && current == original.AccountEmail)
+            {
+                original.Title = post.Title;
+                original.Content = post.Content;
+                original.TypeOfPost = post.TypeOfPost;
+                db.SaveChanges();
+                return RedirectToAction("Detail", "Posts", new { id = post.Id });
+            }
+
+            return View(post);
         }
     }
 

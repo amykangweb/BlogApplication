@@ -26,7 +26,7 @@ namespace BlogApplication
         /// Post id.
         /// </summary>
         [Key]
-        public int Id { get; private set; }
+        public int Id { get; set; }
         /// <summary>
         /// Post title.
         /// </summary>
